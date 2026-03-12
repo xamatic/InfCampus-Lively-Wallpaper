@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GradesWPInfCampus Setup Guide</title>
+    <style>
+        :root {
+            --bg: #0d1526;
+            --bg-soft: #131f36;
+            --panel: rgba(16, 24, 40, 0.86);
+            --panel-border: rgba(255, 255, 255, 0.08);
+            --text: #e7eefc;
+            --muted: #9db0d4;
+            --accent: #78a7ff;
+            --accent-2: #7ce0c3;
+            --warn: #ffd57a;
+            --shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", "Trebuchet MS", sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(circle at top left, rgba(120, 167, 255, 0.25), transparent 30%),
+                radial-gradient(circle at top right, rgba(124, 224, 195, 0.18), transparent 28%),
+                linear-gradient(160deg, #08101f 0%, var(--bg) 45%, #0f1b2f 100%);
+            min-height: 100vh;
+        }
+
+        .shell {
+            width: min(1160px, calc(100vw - 32px));
+            margin: 0 auto;
+            padding: 40px 0 64px;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 24px;
+            align-items: stretch;
+            margin-bottom: 28px;
+        }
+
+        .hero-copy,
+        .hero-preview,
+        .step {
+            background: var(--panel);
+            border: 1px solid var(--panel-border);
+            border-radius: 28px;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+        }
+
+        .hero-copy {
+            padding: 32px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: rgba(120, 167, 255, 0.12);
+            color: #bfd4ff;
+            font-size: 0.82rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+        }
+
+        h1 {
+            margin: 0 0 12px;
+            font-size: clamp(2.2rem, 4vw, 3.6rem);
+            line-height: 0.98;
+        }
+
+        .hero-copy p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 1.02rem;
+            line-height: 1.6;
+            max-width: 58ch;
+        }
+
+        .hero-preview {
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .hero-preview img.preview {
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            object-fit: cover;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: #0b1220;
+        }
+
+        .mini-note {
+            color: var(--muted);
+            font-size: 0.92rem;
+            line-height: 1.5;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 22px;
+        }
+
+        .step {
+            padding: 22px;
+            display: grid;
+            gap: 18px;
+        }
+
+        .step-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .step-number {
+            width: 42px;
+            height: 42px;
+            border-radius: 14px;
+            display: inline-grid;
+            place-items: center;
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+            color: #08101f;
+            font-weight: 800;
+        }
+
+        .step h2 {
+            margin: 0;
+            font-size: 1.3rem;
+        }
+
+        .step p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .step img {
+            width: 100%;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: #0b1220;
+        }
+
+        .callout {
+            padding: 16px 18px;
+            border-radius: 18px;
+            background: rgba(255, 213, 122, 0.1);
+            border: 1px solid rgba(255, 213, 122, 0.18);
+            color: #ffe6ad;
+            font-size: 0.95rem;
+            line-height: 1.55;
+        }
+
+        code {
+            font-family: Consolas, "Courier New", monospace;
+            font-size: 0.92em;
+            padding: 2px 6px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        ul {
+            margin: 0;
+            padding-left: 18px;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        @media (max-width: 900px) {
+            .hero,
+            .steps {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="shell">
+        <section class="hero">
+            <div class="hero-copy">
+                <div class="eyebrow">GradesWPInfCampus Setup</div>
+                <h1>Use the wizard first, then finish the last two manual clicks here.</h1>
+                <p>
+                    The installer can handle Node.js, Lively Wallpaper, server startup, dist sync, and autostart.
+                    Chromium still blocks silent unpacked extension installs, so use the image prompts below for the final steps.
+                </p>
+            </div>
+            <div class="hero-preview">
+                <img class="preview" src="data/images/wallpaper.png" alt="Wallpaper preview">
+                <div class="mini-note">
+                    If automatic Lively import worked, you only need to load the extension and sign in.
+                    If it did not, follow Step 3 exactly.
+                </div>
+            </div>
+        </section>
+
+        <section class="steps">
+            <article class="step">
+                <div class="step-top">
+                    <div>
+                        <div class="step-number">1</div>
+                    </div>
+                    <h2>Run the installer</h2>
+                </div>
+                <img src="setup-assets/setup-wizard.svg" alt="Setup wizard illustration">
+                <p>Double-click <code>setup.bat</code>. Recommended answers:</p>
+                <ul>
+                    <li>Install Node.js if missing: Yes</li>
+                    <li>Install Lively Wallpaper: Yes</li>
+                    <li>Auto-start server on login: your preference</li>
+                    <li>Start server now: Yes</li>
+                    <li>Try automatic Lively wallpaper import: Yes</li>
+                </ul>
+            </article>
+
+            <article class="step">
+                <div class="step-top">
+                    <div>
+                        <div class="step-number">2</div>
+                    </div>
+                    <h2>Load the unpacked extension</h2>
+                </div>
+                <img src="setup-assets/extension-guide.svg" alt="Browser extensions guide">
+                <p>
+                    Open <code>chrome://extensions</code> or <code>edge://extensions</code>, turn on Developer Mode,
+                    then click Load unpacked and select the <code>grades-extension</code> folder.
+                </p>
+                <div class="callout">
+                    This step cannot be fully automated by the installer because Chromium blocks silent unpacked extension installs.
+                </div>
+            </article>
+
+            <article class="step">
+                <div class="step-top">
+                    <div>
+                        <div class="step-number">3</div>
+                    </div>
+                    <h2>If needed, add the wallpaper in Lively</h2>
+                </div>
+                <img src="setup-assets/lively-guide.svg" alt="Lively wallpaper import guide">
+                <p>
+                    If the installer did not auto-apply the wallpaper, open Lively Wallpaper and add
+                    <code>sites/wallpaper/wallpaper.html</code> manually.
+                </p>
+                <ul>
+                    <li>Open Lively</li>
+                    <li>Choose Add Wallpaper</li>
+                    <li>Pick <code>sites/wallpaper/wallpaper.html</code></li>
+                    <li>Apply it to your screen</li>
+                </ul>
+            </article>
+
+            <article class="step">
+                <div class="step-top">
+                    <div>
+                        <div class="step-number">4</div>
+                    </div>
+                    <h2>Sign in and let the data sync</h2>
+                </div>
+                <img src="setup-assets/login-sync-guide.svg" alt="Login and sync guide">
+                <p>
+                    Use the extension popup or the login tab it opens, sign in to Infinite Campus,
+                    then wait a moment for grades and assignments to sync to the local server.
+                </p>
+                <div class="callout">
+                    The wallpaper server is local: <code>http://localhost:3001</code> and <code>ws://localhost:3002</code>.
+                    If data is blank, make sure the server is running and the extension is loaded.
+                </div>
+            </article>
+        </section>
+    </div>
+</body>
+</html>

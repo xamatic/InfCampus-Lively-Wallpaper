@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" fill="none">
+  <rect width="1200" height="760" rx="36" fill="#0C1528"/>
+  <rect x="82" y="60" width="1036" height="640" rx="28" fill="#141F37" stroke="#2E3D67"/>
+  <text x="124" y="126" fill="#E7EEFC" font-family="Segoe UI, sans-serif" font-size="36" font-weight="700">Login and sync</text>
+  <rect x="128" y="184" width="428" height="430" rx="28" fill="#10192D" stroke="#2E3D67"/>
+  <rect x="644" y="184" width="430" height="430" rx="28" fill="#10192D" stroke="#2E3D67"/>
+  <text x="170" y="246" fill="#7CE0C3" font-family="Segoe UI, sans-serif" font-size="24" font-weight="700">Browser extension</text>
+  <text x="170" y="300" fill="#9DB0D4" font-family="Segoe UI, sans-serif" font-size="24">1. Open the extension popup</text>
+  <text x="170" y="344" fill="#9DB0D4" font-family="Segoe UI, sans-serif" font-size="24">2. Sign in to Infinite Campus</text>
+  <text x="170" y="388" fill="#9DB0D4" font-family="Segoe UI, sans-serif" font-size="24">3. Let it fetch grades and assignments</text>
+  <text x="686" y="246" fill="#78A7FF" font-family="Segoe UI, sans-serif" font-size="24" font-weight="700">Local server</text>
+  <text x="686" y="300" fill="#9DB0D4" font-family="Consolas, monospace" font-size="24">http://localhost:3001</text>
+  <text x="686" y="344" fill="#9DB0D4" font-family="Consolas, monospace" font-size="24">ws://localhost:3002</text>
+  <text x="686" y="388" fill="#9DB0D4" font-family="Segoe UI, sans-serif" font-size="24">Keep the server running</text>
+  <path d="M556 398H640" stroke="#FFD57A" stroke-width="10" stroke-linecap="round" stroke-dasharray="22 20"/>
+  <text x="486" y="442" fill="#FFD57A" font-family="Segoe UI, sans-serif" font-size="22" font-weight="700">sync</text>
+</svg>

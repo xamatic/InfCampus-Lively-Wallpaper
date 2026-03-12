@@ -1,0 +1,69 @@
+{
+  "terms": [
+    {
+      "_id": "361",
+      "termID": 361,
+      "termScheduleID": 181,
+      "seq": 1,
+      "startDate": "2025-08-06",
+      "endDate": "2025-10-09",
+      "termName": "Q1",
+      "structureID": 2698,
+      "isPrimary": true,
+      "termScheduleName": "Quarters",
+      "calendarID": 2698,
+      "scheduleStructureName": "Main",
+      "_model": "TermModel",
+      "_hashCode": "-1718147731"
+    },
+    {
+      "_id": "362",
+      "termID": 362,
+      "termScheduleID": 181,
+      "seq": 2,
+      "startDate": "2025-10-10",
+      "endDate": "2025-12-19",
+      "termName": "Q2",
+      "structureID": 2698,
+      "isPrimary": true,
+      "termScheduleName": "Quarters",
+      "calendarID": 2698,
+      "scheduleStructureName": "Main",
+      "_model": "TermModel",
+      "_hashCode": "10415696"
+    },
+    {
+      "_id": "363",
+      "termID": 363,
+      "termScheduleID": 181,
+      "seq": 3,
+      "startDate": "2025-12-20",
+      "endDate": "2026-03-12",
+      "termName": "Q3",
+      "structureID": 2698,
+      "isPrimary": true,
+      "termScheduleName": "Quarters",
+      "calendarID": 2698,
+      "scheduleStructureName": "Main",
+      "_model": "TermModel",
+      "_hashCode": "-2134550703"
+    },
+    {
+      "_id": "364",
+      "termID": 364,
+      "termScheduleID": 181,
+      "seq": 4,
+      "startDate": "2026-03-13",
+      "endDate": "2026-05-22",
+      "termName": "Q4",
+      "structureID": 2698,
+      "isPrimary": true,
+      "termScheduleName": "Quarters",
+      "calendarID": 2698,
+      "scheduleStructureName": "Main",
+      "_model": "TermModel",
+      "_hashCode": "1714812980"
+    }
+  ],
+  "lastUpdated": "2026-03-12T02:14:36.918Z"
+}

@@ -1,0 +1,13 @@
+{
+  "name": "grades-widget-proxy",
+  "version": "1.0.0",
+  "description": "Local grades wallpaper server and setup helpers",
+  "main": "grades-server.js",
+  "scripts": {
+    "start": "node grades-server.js",
+    "setup": "powershell -ExecutionPolicy Bypass -File .\\setup.ps1"
+  },
+  "keywords": ["grades", "wallpaper", "lively", "infinite-campus"],
+  "author": "",
+  "license": "MIT"
+}

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      width: 350px;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #f5f5f5;
+    }
+    .header {
+      background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+    .header h1 {
+      font-size: 1.2em;
+      margin-bottom: 5px;
+    }
+    .header .school {
+      font-size: 0.8em;
+      opacity: 0.8;
+    }
+    .header .status {
+      font-size: 0.75em;
+      margin-top: 8px;
+    }
+    #content {
+      padding: 10px;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+    .gpa-display {
+      background: white;
+      border-radius: 10px;
+      padding: 15px;
+      text-align: center;
+      margin-bottom: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .gpa-value {
+      font-size: 2em;
+      font-weight: bold;
+      color: #2c3e50;
+    }
+    .gpa-label {
+      color: #7f8c8d;
+      font-size: 0.85em;
+    }
+    .term-section {
+      background: white;
+      border-radius: 10px;
+      padding: 10px;
+      margin-bottom: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .term-title {
+      font-size: 0.95em;
+      color: #2c3e50;
+      border-bottom: 2px solid #3498db;
+      padding-bottom: 5px;
+      margin-bottom: 8px;
+    }
+    .course-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px;
+      margin: 4px 0;
+      background: #f8f9fa;
+      border-radius: 6px;
+    }
+    .course-name {
+      flex: 1;
+      font-size: 0.85em;
+      color: #2c3e50;
+    }
+    .course-grade {
+      font-weight: bold;
+      font-size: 1em;
+      min-width: 40px;
+      text-align: right;
+    }
+    .grade-a { color: #27ae60; }
+    .grade-b { color: #f39c12; }
+    .grade-c { color: #e74c3c; }
+    .grade-na { color: #95a5a6; }
+    
+    .login-prompt {
+      padding: 30px 20px;
+      text-align: center;
+    }
+    .login-prompt p {
+      color: #7f8c8d;
+      margin-bottom: 15px;
+      font-size: 0.9em;
+    }
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9em;
+      text-decoration: none;
+    }
+    .btn:hover {
+      background: #2980b9;
+    }
+    .loading {
+      text-align: center;
+      padding: 40px;
+      color: #7f8c8d;
+    }
+    .error {
+      color: #e74c3c;
+      text-align: center;
+      padding: 20px;
+    }
+    .refresh-btn {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background: #ecf0f1;
+      border: none;
+      cursor: pointer;
+      color: #7f8c8d;
+      font-size: 0.85em;
+    }
+    .refresh-btn:hover {
+      background: #bdc3c7;
+    }
+    .more-btn {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background: #ecf0f1;
+      border: none;
+      cursor: pointer;
+      color: #7f8c8d;
+      font-size: 0.85em;
+    }
+    .more-btn:hover {
+      background: #bdc3c7;
+    }
+    .settings-btn {
+        display: block;
+        position: absolute;
+        background: #00000000;
+        border: none;
+        cursor: pointer;
+        color: #7f8c8d;
+        font-size: 1.5em;
+        width: 1.5em;
+        height: 1.5em;
+    }
+    .settings-btn:hover {
+      background: #4d4d4d70;
+    }
+    button[class*="btn"] {
+        transition: all ease-in 0.4s;
+    }
+    button[class*="btn"]:hover {
+        transition: all ease-out .10s;
+        transform: scale(1.05);
+    }
+
+    div[class^="content-more-hidden"] {
+      display: none;
+    }
+    #content-more {
+      display: block;
+    }
+
+
+    #content-more input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+   
+  </style>
+</head>
+<body>
+  <div class="header">
+    <button class="settings-btn" id="settings">⚙️</button>
+    <h1>📊 Grades Widget</h1>
+    <div class="school">Kearns Academy</div>
+    <div class="status" id="status">Loading...</div>
+  </div>
+
+  <div id="content">
+    <div class="loading">Loading grades...</div>
+  </div>
+
+  <button class="refresh-btn" id="refresh">🔄 Refresh</button>
+  <button class="more-btn" id="more">↗️ More</button>
+
+  <div id="content-more" class="content-more-hidden">
+    <input type="text" id="notes" placeholder="Enter notes here...">
+  </div>
+
+  <script src="popup.js" type="module"></script>
+</body>
+</html>

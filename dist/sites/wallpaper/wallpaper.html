@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grades Wallpaper</title>
+    <script src="https://unpkg.com/libgif@0.0.3/libgif.js"></script>
+    <link rel="stylesheet" href="wallpaper.css" type="text/css">
+    
+</head>
+<body>
+    <div id="fallback-background" aria-hidden="true"></div>
+    <div id="three-container"></div>
+    <canvas id="particle-canvas"></canvas>
+    
+    <div class="mouse-glow" id="mouseGlow"></div>
+    <div class="mouse-glow-secondary" id="mouseGlowSecondary"></div>
+    <div class="mouse-glow-tertiary" id="mouseGlowTertiary"></div>
+    
+    <!-- Frosted Glass Clock -->
+    <div class="time-display" id="timeDisplay">
+        <div class="time-container">
+            <div class="time" id="clock">00:00</div>
+            <div class="date" id="date">Loading...</div>
+        </div>
+    </div>
+    
+    <!-- Central Dashboard -->
+    <div class="dashboard">
+        <!-- Grades Panel -->
+        <div class="panel" id="grades-panel">
+            <div class="panel-header">
+                <h2>Academic Performance</h2>
+                <div class="status">
+                    <span class="live-indicator"></span>
+                    <span id="grades-status">Connecting...</span>
+                </div>
+            </div>
+            <div id="grades-content">
+                <div class="loading"><div class="loading-spinner"></div></div>
+            </div>
+        </div>
+        
+        <!-- Assignments Panel -->
+        <div class="panel" id="assignments-panel">
+            <div class="panel-header">
+                <h2>Recent Activity</h2>
+                <div class="status">
+                    <span class="live-indicator"></span>
+                    <span id="assignments-status">Connecting...</span>
+                </div>
+            </div>
+            <div id="assignments-content">
+                <div class="loading"><div class="loading-spinner"></div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SVG Gradients -->
+    <svg width="0" height="0" style="position:absolute">
+        <defs>
+            <linearGradient id="gradeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#4ade80"/>
+                <stop offset="50%" stop-color="#a5b4fc"/>
+                <stop offset="100%" stop-color="#c084fc"/>
+            </linearGradient>
+            <linearGradient id="greenGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#22c55e"/>
+                <stop offset="100%" stop-color="#4ade80"/>
+            </linearGradient>
+            <linearGradient id="yellowGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#eab308"/>
+                <stop offset="100%" stop-color="#fbbf24"/>
+            </linearGradient>
+            <linearGradient id="redGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#dc2626"/>
+                <stop offset="100%" stop-color="#f87171"/>
+            </linearGradient>
+        </defs>
+    </svg>
+    <script src="prefire-loader.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</body>
+</html>

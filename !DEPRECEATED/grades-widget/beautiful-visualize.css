@@ -1,0 +1,143 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+#widget-container {
+    width: 400px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    overflow: hidden;
+}
+.widget-header {
+    background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+.widget-header h1 {
+    margin: 0;
+    font-size: 1.5em;
+}
+.widget-header p {
+    margin: 5px 0 0 0;
+    opacity: 0.8;
+    font-size: 0.9em;
+}
+#status-text {
+    font-size: 0.8em;
+    margin-top: 10px;
+    opacity: 0.9;
+}
+#grades-content {
+    padding: 15px;
+}
+.term-section {
+    margin-bottom: 20px;
+}
+.term-title {
+    font-size: 1.1em;
+    color: #2c3e50;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+.course-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin: 5px 0;
+    background: #f8f9fa;
+    border-radius: 8px;
+    transition: transform 0.2s;
+}
+.course-row:hover {
+    transform: translateX(5px);
+    background: #e9ecef;
+}
+.course-name {
+    flex: 1;
+    font-size: 0.9em;
+    color: #2c3e50;
+}
+.course-grade {
+    font-weight: bold;
+    font-size: 1.1em;
+    min-width: 50px;
+    text-align: right;
+}
+.grade-a { color: #27ae60; }
+.grade-b { color: #f39c12; }
+.grade-c { color: #e74c3c; }
+.grade-na { color: #95a5a6; }
+
+.gpa-display {
+    text-align: center;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    margin: 10px 0;
+}
+.gpa-value {
+    font-size: 2em;
+    font-weight: bold;
+    color: #2c3e50;
+}
+.gpa-label {
+    color: #7f8c8d;
+    font-size: 0.9em;
+}
+
+#login-prompt {
+    display: none;
+    padding: 30px;
+    text-align: center;
+}
+#login-prompt p {
+    color: #7f8c8d;
+    margin-bottom: 15px;
+}
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+.btn:hover {
+    background: #2980b9;
+}
+.error {
+    color: #e74c3c;
+    text-align: center;
+    padding: 20px;
+}
+.refresh-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background: #ecf0f1;
+    border: none;
+    cursor: pointer;
+    color: #7f8c8d;
+    font-size: 0.9em;
+    transition: background 0.3s;
+}
+.refresh-btn:hover {
+    background: #bdc3c7;
+}

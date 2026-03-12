@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Get Session Cookie</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f4f4f9;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #2c3e50;
+        }
+        .step {
+            margin: 20px 0;
+            padding: 15px;
+            background: #ecf0f1;
+            border-left: 4px solid #3498db;
+        }
+        .step h3 {
+            margin-top: 0;
+            color: #2980b9;
+        }
+        code {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        .cookie-display {
+            background: #fff;
+            border: 2px solid #3498db;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            word-break: break-all;
+            font-family: monospace;
+            min-height: 40px;
+        }
+        button {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #229954;
+        }
+        .warning {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .success {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 20px 0;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🍪 Get Your Session Cookie</h1>
+        
+        <div class="warning">
+            <strong>⚠️ Important:</strong> You must be logged into the school portal first!
+        </div>
+
+        <div class="step">
+            <h3>Step 1: Log In</h3>
+            <p>Open this link in a new tab and log in:</p>
+            <p><a href="https://410.ncsis.gov/campus/resources/portal/grades" target="_blank">
+                https://410.ncsis.gov/campus/resources/portal/grades
+            </a></p>
+        </div>
+
+        <div class="step">
+            <h3>Step 2: Extract Cookie Using JavaScript</h3>
+            <p>After logging in, come back to this page and click this button:</p>
+            <button onclick="getCookie()">Extract Cookie from Current Browser</button>
+            <div id="cookie-result" class="cookie-display">Click the button to extract your cookie...</div>
+        </div>
+
+        <div class="step">
+            <h3>Step 3: Manual Extraction (If automatic fails)</h3>
+            <ol>
+                <li>While on the grades page, press <code>F12</code> to open Developer Tools</li>
+                <li>Go to the <strong>Application</strong> tab (Chrome) or <strong>Storage</strong> tab (Firefox)</li>
+                <li>Click on <strong>Cookies</strong> in the left sidebar</li>
+                <li>Click on <code>https://410.ncsis.gov</code></li>
+                <li>Find the cookie named <code>JSESSIONID</code></li>
+                <li>Copy the entire <strong>Value</strong> (usually a long string of random characters)</li>
+            </ol>
+        </div>
+
+        <div class="step">
+            <h3>Step 4: Use the Cookie</h3>
+            <p>Copy the cookie value and paste it into your widget's "Setup Authentication" section.</p>
+            <p><strong>Format:</strong> Just paste the value (without "JSESSIONID=")</p>
+        </div>
+
+        <div id="success-msg" class="success">
+            ✅ Cookie extracted! Copy it from the box above and paste it into your widget.
+        </div>
+    </div>
+
+    <script>
+        function getCookie() {
+            // Try to get all cookies from the current page
+            const cookies = document.cookie;
+            const resultDiv = document.getElementById('cookie-result');
+            const successMsg = document.getElementById('success-msg');
+            
+            if (!cookies) {
+                resultDiv.innerHTML = '<span style="color: #e74c3c;">⚠️ No cookies found on this page. You need to extract the cookie while on the school\'s website.</span>';
+                resultDiv.innerHTML += '<br><br><strong>Alternative Method:</strong> Open <a href="https://410.ncsis.gov/campus/resources/portal/grades" target="_blank">the grades page</a>, open console (F12), and run:<br><code>document.cookie</code><br>Then copy the JSESSIONID value.';
+                return;
+            }
+
+            // Parse cookies
+            const cookieObj = {};
+            cookies.split(';').forEach(cookie => {
+                const [name, value] = cookie.trim().split('=');
+                cookieObj[name] = value;
+            });
+
+            if (cookieObj.JSESSIONID) {
+                resultDiv.innerHTML = `<strong>Found JSESSIONID:</strong><br><br>${cookieObj.JSESSIONID}`;
+                successMsg.style.display = 'block';
+                
+                // Copy to clipboard
+                navigator.clipboard.writeText(cookieObj.JSESSIONID).then(() => {
+                    resultDiv.innerHTML += '<br><br><span style="color: #27ae60;">✅ Copied to clipboard!</span>';
+                }).catch(() => {
+                    resultDiv.innerHTML += '<br><br><span style="color: #f39c12;">Select and copy the value above</span>';
+                });
+            } else {
+                resultDiv.innerHTML = '<span style="color: #e74c3c;">⚠️ JSESSIONID cookie not found. You must be on the school\'s domain to extract the cookie.</span>';
+                resultDiv.innerHTML += '<br><br><strong>What to do:</strong><ol style="text-align: left; margin-left: 20px;">';
+                resultDiv.innerHTML += '<li>Open <a href="https://410.ncsis.gov/campus/resources/portal/grades" target="_blank">the grades page</a></li>';
+                resultDiv.innerHTML += '<li>Press <code>F12</code></li>';
+                resultDiv.innerHTML += '<li>Go to Console tab</li>';
+                resultDiv.innerHTML += '<li>Type: <code>document.cookie</code></li>';
+                resultDiv.innerHTML += '<li>Copy the JSESSIONID value from the output</li></ol>';
+            }
+        }
+    </script>
+</body>
+</html>

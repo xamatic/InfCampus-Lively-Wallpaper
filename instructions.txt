@@ -1,0 +1,102 @@
+
+Welcome to GradesWPInfCampus, a wallpaper "engine" made for grade viewing of infinite campus.
+-------------------------------------
+
+Fastest setup
+- Double-click `setup.bat` in the project root.
+- The setup wizard can:
+	- install Node.js if it is missing,
+	- install Lively Wallpaper with `winget`,
+	- prepare the `dist` folder,
+	- start the local server,
+	- add the wallpaper to Lively automatically,
+	- optionally install server auto-start on login,
+	- open a visual setup guide for the remaining manual browser steps.
+
+Overview
+- This repository runs a small local server that serves a grades widget/extension and a wallpaper HTML asset. These steps assume a Windows 10/11 machine.
+
+Prerequisites
+- Install Node.js (LTS recommended). Verify with:
+
+```bash
+node --version
+npm --version
+```
+
+- A modern Chromium-based browser (Chrome, Edge) for the extension and wallpaper preview.
+- (Optional) Lively Wallpaper if you want to load the provided HTML wallpaper into your desktop wallpaper collection.
+
+Quick start — run the server
+1. Open a Command Prompt or PowerShell in the project root (the folder containing `grades-server.js`).
+
+```powershell
+cd "c:\Users\rocks\Downloads\GradesWPInfCampus"
+npm install
+node grades-server.js
+```
+
+2. The server serves the static files and API used by the extension and widget. Open your browser to http://localhost:3001 (or the port printed by the server) to verify.
+
+Run hidden / background server
+- To run the server without a visible console, use the included `start-server-hidden.vbs` (double-click or call it). To stop the server, use `stop-server.bat`.
+
+Autostart on login
+- To set the server to start automatically on login, run `install-autostart.bat` (double-click or run from an elevated prompt if required). To remove autostart, run `uninstall-autostart.bat`.
+
+Recommended setup path
+1. Run `setup.bat`.
+2. If the wizard opens `setup-guide.html`, follow the on-screen image prompts.
+3. In your Chromium browser, load the `grades-extension` folder as an unpacked extension.
+4. Sign in to Infinite Campus when prompted by the extension.
+5. If Lively Wallpaper did not apply the wallpaper automatically, use the guide to add `sites/wallpaper/wallpaper.html` manually.
+
+Packaging / build helpers
+- `build.bat` contains build steps you may use for packaging or preparing assets. Inspect it before running if you want to adjust behavior.
+
+Browser extension (Grades extension)
+1. Open your browser's extensions page (e.g., `chrome://extensions` or `edge://extensions`).
+2. Enable Developer Mode.
+3. Click "Load unpacked" and select the `grades-extension` folder inside the project.
+4. The extension will use the local server API to fetch data — make sure the server is running.
+
+Widget and deprecated assets
+- There is a `!DEPRECEATED` folder containing older helpers and a Tampermonkey script. These are left for reference; prefer the extension and server above.
+
+Editing data
+- Data files live in the `data` folder: `assignments-data.json`, `grades-data.json`, and `wallpaper-settings.json`. Edit these with a text editor to change sample data used by the server and widget.
+
+Wallpaper (use with Lively Wallpaper or a browser)
+- The `sites/wallpaper` folder contains a self-contained HTML/CSS/JS wallpaper (`wallpaper.html`, `wallpaper.js`, `wallpaper.css`). You can preview it by opening `sites/wallpaper/wallpaper.html` in a browser while the server is running, or add it to Lively Wallpaper:
+
+	- Install Lively Wallpaper from the Microsoft Store (or from: https://rocksdanister.github.io/lively/).
+	- In Lively, click "Add Wallpaper" and choose the `sites/wallpaper/wallpaper.html` file (point to the file or the project folder containing it). Lively will host it as a desktop wallpaper.
+	- The setup wizard also tries to do this automatically with Lively's `setwp --file` command.
+
+Security & Cookies
+- The repo contains a `Cookie-Method` reference and a Tampermonkey userscript in `!DEPRECEATED/Tamper-Monkey`. Only use those if you understand the security implications; the recommended flow is the extension + local server.
+
+Troubleshooting
+- "Port already in use" — stop other services or change the port in `grades-server.js`.
+- Extension not loading data — ensure `node grades-server.js` is running and the port matches the extension's API target.
+- Autostart fails — try running `install-autostart.bat` from an elevated prompt.
+
+Development tips
+- When changing server code, stop the running Node process and restart it. Consider using `nodemon` for automatic restarts during development:
+
+```powershell
+npm install -g nodemon
+nodemon grades-server.js
+```
+
+Files of interest
+- `grades-server.js` — main Node server to run.
+- `grades-extension/` — browser extension sources (load as unpacked extension).
+- `sites/wallpaper/` — HTML/CSS/JS wallpaper assets (can be added to Lively).
+- `data/` — editable sample data used by the server and widget.
+- `install-autostart.bat`, `uninstall-autostart.bat` — helpers for Windows autostart.
+- `start-server-hidden.vbs`, `stop-server.bat` — run/stop server hidden.
+
+---
+Last updated: 2025-12-24
+

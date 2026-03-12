@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wallpaper Settings</title>
+    <script src="https://unpkg.com/libgif@0.0.3/libgif.js"></script>
+    <link rel=
+    <link rel="stylesheet" href="settings.css" type="text/css">
+</head>
+<body>
+    <div class="container">
+        <h1>⚙️ Wallpaper Settings</h1>
+        <p class="subtitle">Customize your wallpaper experience</p>
+
+        <div class="settings-grid">
+            <!-- Background Image -->
+            <div class="settings-card">
+                <div class="card-header">
+                    <span class="icon">🖼️</span>
+                    <h2>Background Image</h2>
+                </div>
+                
+                <div class="upload-area" id="uploadArea">
+                    <input type="file" id="imageUpload" accept="image/*">
+                    <div class="upload-icon">📁</div>
+                    <div class="upload-text">Drop an image here or click to browse</div>
+                    <div class="upload-hint">Supports JPG, PNG, GIF, WebP</div>
+                </div>
+
+                <div class="image-preview" id="imagePreview">
+                    <img id="previewImg" src="" alt="Preview">
+                    <button class="remove-btn" onclick="removeImage()">×</button>
+                </div>
+
+                <div class="setting-row" style="margin-top: 20px;">
+                    <label>Or enter image URL</label>
+                    <input type="url" id="imageUrl" placeholder="https://example.com/image.jpg">
+                </div>
+
+                <div class="setting-row">
+                    <label>Image Fit Mode</label>
+                    <select id="imageFitMode" class="select-dropdown">
+                        <option value="cover">Cover (fill, crop excess)</option>
+                        <option value="contain">Contain (fit, may letterbox)</option>
+                        <option value="fill">Fill (stretch to fit)</option>
+                        <option value="none">None (original size, centered)</option>
+                    </select>
+                </div>
+
+                <a href="sites/wallpaper-settings/settings.html" target="_blank" class="preview-link">
+                    👁️ Open Wallpaper Preview
+                </a>
+            </div>
+
+            <!-- Effect Settings -->
+            <div class="settings-card">
+                <div class="card-header">
+                    <span class="icon">✨</span>
+                    <h2>Visual Effects</h2>
+                </div>
+
+                <div class="setting-row">
+                    <label>Effect Preset</label>
+                    <div class="preset-grid">
+                        <button class="preset-btn active" data-preset="liquid">Liquid</button>
+                        <button class="preset-btn" data-preset="wave">Wave</button>
+                        <button class="preset-btn" data-preset="ripple">Ripple</button>
+                        <button class="preset-btn" data-preset="distort">Distort</button>
+                        <button class="preset-btn" data-preset="none">None</button>
+                        <button class="preset-btn" data-preset="custom">Custom</button>
+                    </div>
+                </div>
+
+                <div class="setting-row">
+                    <label>Effect Intensity</label>
+                    <div class="range-row">
+                        <input type="range" id="effectIntensity" min="0" step="0.1" max="100" value="10">
+                        <span class="range-value" id="intensityValue">10%</span>
+                    </div>
+                </div>
+
+                <div class="setting-row">
+                    <label>Animation Speed</label>
+                    <div class="range-row">
+                        <input type="range" id="animationSpeed" min="0" step="0.1" max="100" value="1">
+                        <span class="range-value" id="speedValue">1%</span>
+                    </div>
+                </div>
+
+                <div class="setting-row">
+                    <label>Mouse Reactivity</label>
+                    <div class="range-row">
+                        <input type="range" id="mouseReactivity" min="0" step="0.1" max="100" value="20">
+                        <span class="range-value" id="reactivityValue">20%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Particles -->
+            <div class="settings-card">
+                <div class="card-header">
+                    <span class="icon">🌟</span>
+                    <h2>Particles</h2>
+                </div>
+
+                <div class="toggle-row">
+                    <span class="toggle-label">Enable Particles</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="particlesEnabled" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+
+                <div class="setting-row">
+                    <label>Particle Count</label>
+                    <div class="range-row">
+                        <input type="range" id="particleCount" min="10" max="200" value="100">
+                        <span class="range-value" id="particleCountValue">100</span>
+                    </div>
+                </div>
+
+                <div class="setting-row">
+                    <label>Connection Distance</label>
+                    <div class="range-row">
+                        <input type="range" id="connectionDistance" min="50" max="300" value="150">
+                        <span class="range-value" id="connectionValue">150px</span>
+                    </div>
+                </div>
+
+                <div class="setting-row">
+                    <label>Particle Color</label>
+                    <div class="color-row">
+                        <input type="color" id="particleColors" value="#667eea">
+                        <input type="text" id="particleColorsText" value="#667eea">
+                    </div>
+                </div>
+                <div class="toggle-row">
+                    <span class="toggle-label">Show Connections</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="showConnections" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Colors -->
+            <div class="settings-card">
+                <div class="card-header">
+                    <span class="icon">🎨</span>
+                    <h2>Colors</h2>
+                </div>
+
+                <div class="setting-row">
+                    <label>Primary Accent</label>
+                    <div class="color-row">
+                        <input type="color" id="primaryColor" value="#667eea">
+                        <input type="text" id="primaryColorText" value="#667eea">
+                    </div>
+                </div>
+
+                <div class="setting-row">
+                    <label>Secondary Accent</label>
+                    <div class="color-row">
+                        <input type="color" id="secondaryColor" value="#764ba2">
+                        <input type="text" id="secondaryColorText" value="#764ba2">
+                    </div>
+                </div>
+
+                <div class="setting-row">
+                    <label>Glow Color</label>
+                    <div class="color-row">
+                        <input type="color" id="glowColor" value="#a5b4fc">
+                        <input type="text" id="glowColorText" value="#a5b4fc">
+                    </div>
+                </div>
+
+                <div class="toggle-row">
+                    <span class="toggle-label">Aurora Effect</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="auroraEnabled" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Clock & Widgets -->
+            <div class="settings-card">
+                <div class="card-header">
+                    <span class="icon">⏰</span>
+                    <h2>Clock & Widgets</h2>
+                </div>
+
+                <div class="toggle-row">
+                    <span class="toggle-label">Show Clock</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="showClock" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+
+                <div class="toggle-row">
+                    <span class="toggle-label">24-Hour Format</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="use24Hour">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+
+                <div class="toggle-row">
+                    <span class="toggle-label">Show Date</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="showDate" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+
+                <div class="toggle-row">
+                    <span class="toggle-label">Show Grades Widget</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="showGrades" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+
+                <div class="setting-row">
+                    <label>Grades Quarter Filter</label>
+                    <select id="gradesTermFilter" class="select-dropdown">
+                        <option value="current">Current Quarter</option>
+                        <option value="s1">Semester 1 (Q1 + Q2)</option>
+                        <option value="s2">Semester 2 (Q3 + Q4)</option>
+                        <option value="all">All Quarters</option>
+                    </select>
+                </div>
+
+                <div class="toggle-row">
+                    <span class="toggle-label">Show Assignments Widget</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="showAssignments" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+
+                <div class="setting-row">
+                    <label>Clock Size</label>
+                    <div class="range-row">
+                        <input type="range" id="clockSize" min="4" max="15" value="8">
+                        <span class="range-value" id="clockSizeValue">8rem</span>
+                    </div>
+                </div>
+
+                <div class="setting-row">
+                    <label>Clock Background Opacity</label>
+                    <div class="range-row">
+                        <input type="range" id="clockBgOpacity" min="0" max="100" value="3">
+                        <span class="range-value" id="clockBgOpacityValue">3%</span>
+                    </div>
+                </div>
+
+                <div class="setting-row">
+                    <label>Clock Blur</label>
+                    <div class="range-row">
+                        <input type="range" id="clockBlur" min="0" max="100" value="20">
+                        <span class="range-value" id="clockBlurValue">20px</span>
+                    </div>
+                </div>
+
+                <div class="setting-row">
+                    <label>Clock Border Glow</label>
+                    <div class="range-row">
+                        <input type="range" id="clockBorderGlow" min="0" max="100" value="30">
+                        <span class="range-value" id="clockBorderGlowValue">30%</span>
+                    </div>
+                </div>
+
+                <div class="setting-row">
+                    <label>Clock Corner Radius</label>
+                    <div class="range-row">
+                        <input type="range" id="clockRadius" min="0" max="60" value="30">
+                        <span class="range-value" id="clockRadiusValue">30px</span>
+                    </div>
+                </div>
+
+                <div class="toggle-row">
+                    <span class="toggle-label">Clock Glass Effect</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="clockGlassEffect" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Performance -->
+            <div class="settings-card">
+                <div class="card-header">
+                    <span class="icon">⚡</span>
+                    <h2>Performance</h2>
+                </div>
+
+                <div class="setting-row">
+                    <label>Quality</label>
+                    <select id="qualityLevel">
+                        <option value="low">Low (Better Performance)</option>
+                        <option value="medium" selected>Medium (Balanced)</option>
+                        <option value="high">High (Best Quality)</option>
+                        <option value="ultra">Ultra (Maximum Effects)</option>
+                    </select>
+                </div>
+
+                <div class="toggle-row">
+                    <span class="toggle-label">Reduce Motion</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="reduceMotion">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+
+                <div class="toggle-row">
+                    <span class="toggle-label">GPU Acceleration</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="gpuAcceleration" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+
+                <div class="setting-row">
+                    <label>Auto-Refresh Interval (seconds)</label>
+                    <input type="number" id="refreshInterval" value="60" min="10" max="600">
+                </div>
+            </div>
+
+            <!-- Auto-Scroll Settings -->
+            <div class="settings-card">
+                <div class="card-header">
+                    <span class="icon">📜</span>
+                    <h2>Auto-Scroll</h2>
+                </div>
+
+                <div class="toggle-row">
+                    <span class="toggle-label">Enable Auto-Scroll</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="autoScrollEnabled" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+
+                <div class="setting-row">
+                    <label>Scroll Speed</label>
+                    <div class="range-row">
+                        <input type="range" id="autoScrollSpeed" min="1" max="5" value="1" step="0.5">
+                        <span class="range-value" id="autoScrollSpeedValue">1x</span>
+                    </div>
+                </div>
+
+                <div class="setting-row">
+                    <label>Initial Delay (seconds)</label>
+                    <div class="range-row">
+                        <input type="range" id="autoScrollDelay" min="0" max="10" value="2" step="0.5">
+                        <span class="range-value" id="autoScrollDelayValue">2s</span>
+                    </div>
+                </div>
+
+                <div class="setting-row">
+                    <label>Pause at Ends (seconds)</label>
+                    <div class="range-row">
+                        <input type="range" id="autoScrollPause" min="0" max="5" value="1" step="0.5">
+                        <span class="range-value" id="autoScrollPauseValue">1s</span>
+                    </div>
+                </div>
+
+                <div class="toggle-row">
+                    <span class="toggle-label">Pause on Hover</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="autoScrollPauseOnHover" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Panel Appearance -->
+            <div class="settings-card">
+                <div class="card-header">
+                    <span class="icon">🪟</span>
+                    <h2>Panel Appearance</h2>
+                </div>
+
+                <div class="setting-row">
+                    <label>Panel Blur</label>
+                    <div class="range-row">
+                        <input type="range" id="panelBlur" min="0" max="100" value="40">
+                        <span class="range-value" id="panelBlurValue">40px</span>
+                    </div>
+                </div>
+
+                <div class="setting-row">
+                    <label>Panel Opacity</label>
+                    <div class="range-row">
+                        <input type="range" id="panelOpacity" min="0" max="100" value="42">
+                        <span class="range-value" id="panelOpacityValue">42%</span>
+                    </div>
+                </div>
+
+                <div class="setting-row">
+                    <label>Border Glow Intensity</label>
+                    <div class="range-row">
+                        <input type="range" id="borderGlow" min="0" max="100" value="55">
+                        <span class="range-value" id="borderGlowValue">55%</span>
+                    </div>
+                </div>
+
+                <div class="setting-row">
+                    <label>Panel Corner Radius</label>
+                    <div class="range-row">
+                        <input type="range" id="panelRadius" min="0" max="50" value="32">
+                        <span class="range-value" id="panelRadiusValue">32px</span>
+                    </div>
+                </div>
+
+                <div class="setting-row">
+                    <label>Panel Gap</label>
+                    <div class="range-row">
+                        <input type="range" id="panelGap" min="10" max="120" value="40">
+                        <span class="range-value" id="panelGapValue">40px</span>
+                    </div>
+                </div>
+
+                <div class="setting-row">
+                    <label>Panel Width</label>
+                    <div class="range-row">
+                        <input type="range" id="panelWidth" min="300" max="550" value="400">
+                        <span class="range-value" id="panelWidthValue">400px</span>
+                    </div>
+                </div>
+
+                <div class="toggle-row">
+                    <span class="toggle-label">Panel Hover Effect</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="panelHoverEffect" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+
+                <div class="toggle-row">
+                    <span class="toggle-label">Glass Morphism</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="glassMorphism" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+
+                <div class="toggle-row">
+                    <span class="toggle-label">Panel Parallax Effect</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="panelParallax">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+
+                <div class="setting-row">
+                    <label>Parallax Intensity</label>
+                    <div class="range-row">
+                        <input type="range" id="panelParallaxIntensity" min="5" max="40" value="15">
+                        <span class="range-value" id="panelParallaxIntensityValue">15px</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Font Settings -->
+            <div class="settings-card">
+                <div class="card-header">
+                    <span class="icon">🔤</span>
+                    <h2>Typography</h2>
+                </div>
+
+                <div class="setting-row">
+                    <label>Font Family</label>
+                    <select id="fontFamily">
+                        <option value="'Segoe UI', sans-serif">Segoe UI (Default)</option>
+                        <option value="'Inter', sans-serif">Inter</option>
+                        <option value="'Roboto', sans-serif">Roboto</option>
+                        <option value="'SF Pro', sans-serif">SF Pro</option>
+                        <option value="'Poppins', sans-serif">Poppins</option>
+                        <option value="'Montserrat', sans-serif">Montserrat</option>
+                        <option value="'JetBrains Mono', monospace">JetBrains Mono</option>
+                        <option value="'Fira Code', monospace">Fira Code</option>
+                    </select>
+                </div>
+
+                <div class="setting-row">
+                    <label>Grade Font Size</label>
+                    <div class="range-row">
+                        <input type="range" id="gradeFontSize" min="1" max="3" value="2.2" step="0.1">
+                        <span class="range-value" id="gradeFontSizeValue">2.2rem</span>
+                    </div>
+                </div>
+
+                <div class="setting-row">
+                    <label>Course Name Size</label>
+                    <div class="range-row">
+                        <input type="range" id="courseNameSize" min="0.6" max="1.2" value="0.86" step="0.02">
+                        <span class="range-value" id="courseNameSizeValue">0.86rem</span>
+                    </div>
+                </div>
+
+                <div class="setting-row">
+                    <label>Text Opacity</label>
+                    <div class="range-row">
+                        <input type="range" id="textOpacity" min="50" max="100" value="85">
+                        <span class="range-value" id="textOpacityValue">85%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Theme Presets -->
+            <div class="settings-card">
+                <div class="card-header">
+                    <span class="icon">🎭</span>
+                    <h2>Theme Presets</h2>
+                </div>
+
+                <div class="setting-row">
+                    <label>Quick Theme</label>
+                    <div class="preset-grid" id="themePresets">
+                        <button class="preset-btn" data-theme="midnight">🌙 Midnight</button>
+                        <button class="preset-btn active" data-theme="aurora">🌌 Aurora</button>
+                        <button class="preset-btn" data-theme="sunset">🌅 Sunset</button>
+                        <button class="preset-btn" data-theme="ocean">🌊 Ocean</button>
+                        <button class="preset-btn" data-theme="forest">🌲 Forest</button>
+                        <button class="preset-btn" data-theme="neon">💜 Neon</button>
+                        <button class="preset-btn" data-theme="minimal">⚪ Minimal</button>
+                        <button class="preset-btn" data-theme="warm">🔥 Warm</button>
+                        <button class="preset-btn" data-theme="cyberpunk">🤖 Cyberpunk</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Alerts & Notifications -->
+            <div class="settings-card">
+                <div class="card-header">
+                    <span class="icon">🔔</span>
+                    <h2>Alerts & Notifications</h2>
+                </div>
+
+                <div class="toggle-row">
+                    <span class="toggle-label">Highlight Missing Assignments</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="highlightMissing" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+
+                <div class="toggle-row">
+                    <span class="toggle-label">Pulse Animation on Missing</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="pulseMissing" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+
+                <div class="toggle-row">
+                    <span class="toggle-label">Show Grade Changes</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="showGradeChanges" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+
+                <div class="setting-row">
+                    <label>Low Grade Warning Threshold</label>
+                    <div class="range-row">
+                        <input type="range" id="lowGradeThreshold" min="50" max="80" value="70">
+                        <span class="range-value" id="lowGradeThresholdValue">70%</span>
+                    </div>
+                </div>
+
+                <div class="setting-row">
+                    <label>Alert Color</label>
+                    <div class="color-row">
+                        <input type="color" id="alertColor" value="#f87171">
+                        <input type="text" id="alertColorText" value="#f87171">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mouse & Interaction -->
+            <div class="settings-card">
+                <div class="card-header">
+                    <span class="icon">🖱️</span>
+                    <h2>Mouse & Interaction</h2>
+                </div>
+
+                <div class="toggle-row">
+                    <span class="toggle-label">Mouse Glow Effect</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="mouseGlowEnabled" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+
+                <div class="setting-row">
+                    <label>Glow Size</label>
+                    <div class="range-row">
+                        <input type="range" id="mouseGlowSize" min="200" max="1200" value="900">
+                        <span class="range-value" id="mouseGlowSizeValue">900px</span>
+                    </div>
+                </div>
+
+                <div class="setting-row">
+                    <label>Glow Opacity</label>
+                    <div class="range-row">
+                        <input type="range" id="mouseGlowOpacity" min="5" max="50" value="20">
+                        <span class="range-value" id="mouseGlowOpacityValue">20%</span>
+                    </div>
+                </div>
+
+                <div class="setting-row">
+                    <label>Glow Color</label>
+                    <div class="color-row">
+                        <input type="color" id="mouseGlowColor" value="#667eea">
+                        <input type="text" id="mouseGlowColorText" value="#667eea" class="color-text">
+                    </div>
+                </div>
+
+                <div class="toggle-row">
+                    <span class="toggle-label">Smooth Cursor Trail</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="cursorTrail">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="button-row">
+            <button class="btn btn-primary" onclick="saveSettings()">
+                💾 Save Settings
+            </button>
+            <label class="toggle-switch" style="margin-left: 10px;">
+                <input type="checkbox" id="livePreview" checked>
+                <span class="toggle-slider"></span>
+            </label>
+            <span style="color: rgba(255,255,255,0.6); font-size: 0.9rem; margin-left: 8px;">Live Preview</span>
+            <button class="btn btn-secondary" onclick="exportSettings()">
+                📤 Export
+            </button>
+            <button class="btn btn-secondary" onclick="importSettings()">
+                📥 Import
+            </button>
+            <button class="btn btn-danger" onclick="resetSettings()">
+                🔄 Reset to Default
+            </button>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script src="settings.js"></script>
+    <input type="file" id="importFile" accept=".json" style="display: none;">
+</body>
+</html>

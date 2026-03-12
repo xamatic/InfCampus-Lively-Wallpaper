@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Grades Widget</title>
+     <link rel="stylesheet" href="beautiful-visualize.css">
+     <script src="https://unpkg.com/libgif-js@1.0.1/libgif.js"></script>
+</head>
+<body>
+    <div id="widget-container">
+        <div class="widget-header">
+            <h1>📊 Grades Widget</h1>
+            <p>The Kearns Academy at Central</p>
+            <div id="status-text">Loading...</div>
+        </div>
+        
+        <div id="login-prompt">
+            <p>⚠️ Please log in to NCEdCloud first</p>
+            <a href="https://410.ncsis.gov/campus/SSO/psu410guilfordco/sis?configID=1" target="_blank" class="btn">
+                Log In to NCEdCloud
+            </a>
+            <p style="font-size: 0.8em; margin-top: 15px; color: #95a5a6;">
+                After logging in, click Refresh below
+            </p>
+        </div>
+        
+        <div id="grades-content">
+            <!-- Grades will be displayed here -->
+        </div>
+        
+        <button class="refresh-btn" onclick="fetchGrades()">🔄 Refresh Grades</button>
+    </div>
+    
+    <script src="visual-backend.js"></script>
+</body>
+</html>
